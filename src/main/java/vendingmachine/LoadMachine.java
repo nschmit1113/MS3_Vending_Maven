@@ -26,15 +26,16 @@ public class LoadMachine {
         JSONParser jP = new JSONParser();
         try {
             
-            Object jsonObject = jP.parse(new FileReader("input.json"));
-            System.out.println(jsonObject.toString());
-            JSONObject jO = (JSONObject)jsonObject;
-            System.out.println(jsonObject.toString());
+            JSONObject jO =(JSONObject) jP.parse(new FileReader("C:\\Users\\schmi\\Coding_Problems\\vending\\input.json"));
             //String id = (String) jsonObject.get("ID"); example
             JSONObject obj = (JSONObject)jO.get("config");
             
-            rows = (int)obj.get("rows");
-            cols = (int)obj.get("columns");
+            cols = Integer.valueOf((String)obj.get("columns"));
+            rows = Integer.valueOf(obj.get("rows").toString());
+
+            JSONArray arr = (JSONArray)jO.get("items");
+
+            
 
         } catch (ParseException e) {
             System.out.println(e);
