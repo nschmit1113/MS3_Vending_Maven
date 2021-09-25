@@ -35,8 +35,9 @@ public class LoadMachine {
             rows = Integer.valueOf(obj.get("rows").toString());
 
             arr = (JSONArray)jO.get("items");
-            initArr();
-            System.out.println(iV.toString());
+            System.out.println(arr.toJSONString());
+            iV = initArr();
+            
             
 
         } catch (ParseException e) {
@@ -53,9 +54,10 @@ public class LoadMachine {
         int i = 0; 
         int j = 0;
         Inventory iV = new Inventory(rows, cols);
-        ListIterator l = arr.listIterator();
-        while(l.hasNext()){
-            JSONObject o = (JSONObject)l.next();
+        
+        for(Object ob: arr){
+            
+            JSONObject o = (JSONObject)ob;
             String name = (String)o.get("name");
            
             int amount = Integer.valueOf(o.get("amount").toString());
@@ -67,7 +69,7 @@ public class LoadMachine {
             Snack sn = new Snack(name, amount, price);
             iV.add(sn, i, j);
             
-            System.out.println(iV.peek(i, j));
+            
             if(j == cols - 1 && i == rows - 1){
                 //Most likely this will rarely if ever occur
                 System.out.println("The machine is full!");
