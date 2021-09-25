@@ -12,8 +12,7 @@ class Inventory{
 
     //This constructor creates a new 2d array to hold the v
     public Inventory(int rows, int cols){
-        System.out.println(rows + " in Inventory");
-        System.out.println(cols + " in IV");
+        
         arr = new Snack[rows][cols];
         
     }

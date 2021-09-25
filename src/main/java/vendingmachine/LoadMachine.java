@@ -35,7 +35,7 @@ public class LoadMachine {
             rows = Integer.valueOf(obj.get("rows").toString());
 
             arr = (JSONArray)jO.get("items");
-            System.out.println(arr.toJSONString());
+           
             iV = initArr();
             
             
@@ -96,7 +96,7 @@ public class LoadMachine {
 
     public static void main(String[] args){
         LoadMachine lm = new LoadMachine();
-        lm.readInJson("C:\\Users\\schmi\\Coding_Problems\\vending\\input.json");
+        lm.readInJson("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
         System.out.println(lm.cols);
         System.out.println(lm.rows);
     }
