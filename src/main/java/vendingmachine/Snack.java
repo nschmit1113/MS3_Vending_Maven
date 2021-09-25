@@ -50,4 +50,11 @@ public class Snack {
     public String checkName(){
         return this.name;
     }
+
+    @Override
+    public String toString(){
+        String str = new String();
+        str = name + ", " + amount + ", $" + price;
+        return str;
+    }
 }

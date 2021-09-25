@@ -57,16 +57,17 @@ public class LoadMachine {
         while(l.hasNext()){
             JSONObject o = (JSONObject)l.next();
             String name = (String)o.get("name");
-            System.out.println(name);
+           
             int amount = Integer.valueOf(o.get("amount").toString());
-            System.out.println(amount);
+            
             String r = o.get("price").toString();
             String x = r.replace("$", "");
             double price = Double.valueOf(x);
-            System.out.println(price);
+            
             Snack sn = new Snack(name, amount, price);
             iV.add(sn, i, j);
-            System.out.println(i + " i counters j " + j);
+            
+            System.out.println(iV.peek(i, j));
             if(j == cols - 1 && i == rows - 1){
                 //Most likely this will rarely if ever occur
                 System.out.println("The machine is full!");
