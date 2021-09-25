@@ -17,24 +17,26 @@ public class LoadMachine {
 
     private int rows;
     private int cols;
+    JSONArray arr;
+    Inventory iV;
 
     public LoadMachine(){
-       
     }
 
     public void readInJson(String fileName){
         JSONParser jP = new JSONParser();
         try {
             
-            JSONObject jO =(JSONObject) jP.parse(new FileReader("C:\\Users\\schmi\\Coding_Problems\\vending\\input.json"));
+            JSONObject jO =(JSONObject) jP.parse(new FileReader(fileName));
             //String id = (String) jsonObject.get("ID"); example
             JSONObject obj = (JSONObject)jO.get("config");
             
             cols = Integer.valueOf((String)obj.get("columns"));
             rows = Integer.valueOf(obj.get("rows").toString());
 
-            JSONArray arr = (JSONArray)jO.get("items");
-
+            arr = (JSONArray)jO.get("items");
+            initArr();
+            System.out.println(iV.toString());
             
 
         } catch (ParseException e) {
@@ -47,6 +49,40 @@ public class LoadMachine {
         
     }
 
+    public Inventory initArr(){
+        int i = 0; 
+        int j = 0;
+        Inventory iV = new Inventory(rows, cols);
+        ListIterator l = arr.listIterator();
+        while(l.hasNext()){
+            JSONObject o = (JSONObject)l.next();
+            String name = (String)o.get("name");
+            System.out.println(name);
+            int amount = Integer.valueOf(o.get("amount").toString());
+            System.out.println(amount);
+            String r = o.get("price").toString();
+            String x = r.replace("$", "");
+            double price = Double.valueOf(x);
+            System.out.println(price);
+            Snack sn = new Snack(name, amount, price);
+            iV.add(sn, i, j);
+            System.out.println(i + " i counters j " + j);
+            if(j == cols - 1 && i == rows - 1){
+                //Most likely this will rarely if ever occur
+                System.out.println("The machine is full!");
+                return iV;
+            }
+            
+            if(j == cols - 1){
+                i++;
+                j = 0;
+            }else{
+                j++;
+            }
+        }
+        return iV;
+    }
+
     public int rows(){
         return rows;
     }
@@ -57,7 +93,7 @@ public class LoadMachine {
 
     public static void main(String[] args){
         LoadMachine lm = new LoadMachine();
-        lm.readInJson("./input.json");
+        lm.readInJson("C:\\Users\\schmi\\Coding_Problems\\vending\\input.json");
         System.out.println(lm.cols);
         System.out.println(lm.rows);
     }
