@@ -18,10 +18,10 @@ class Inventory{
     }
 
     //Returns the snack object at the desired index in the array
-    public String peek(int row, int col){
+    public Snack peek(int row, int col){
         Snack e = arr[row][col];
         
-        return e.toString();
+        return e;
     }
 
     //This method sets a single item in the array to null.

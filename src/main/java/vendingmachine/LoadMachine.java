@@ -76,11 +76,14 @@ public class LoadMachine {
                 return iV;
             }
             
-            if(j == cols - 1){
-                i++;
-                j = 0;
-            }else{
+            if(i == rows - 1){
+                System.out.print(iV.peek(i, j).checkName());
                 j++;
+                i = 0;
+                System.out.println();
+            }else{
+                System.out.print(iV.peek(i, j).checkName() + ", ");
+                i++;
             }
         }
         return iV;
@@ -99,5 +102,6 @@ public class LoadMachine {
         lm.readInJson("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
         System.out.println(lm.cols);
         System.out.println(lm.rows);
+        
     }
 }
