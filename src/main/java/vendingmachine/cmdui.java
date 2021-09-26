@@ -20,7 +20,7 @@ public class cmdui {
             System.out.println("Please Make a Selection from the following menu");
             System.out.println("Our current snacks are:");
             System.out.println("***************************************************************");
-            lm.printInventory();
+            lm.printNames();
             System.out.println("***************************************************************");
             switch(sel){
                 case 1:

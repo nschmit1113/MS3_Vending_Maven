@@ -21,6 +21,7 @@ public class LoadMachine {
     Inventory iV;
 
     public LoadMachine(){
+        System.out.println("Here1");
         readInJson("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
     }
 
@@ -31,7 +32,7 @@ public class LoadMachine {
     public void readInJson(String fileName){
         JSONParser jP = new JSONParser();
         try {
-            
+            System.out.println(fileName);
             JSONObject jO =(JSONObject) jP.parse(new FileReader(fileName));
             //String id = (String) jsonObject.get("ID"); example
             JSONObject obj = (JSONObject)jO.get("config");
@@ -40,9 +41,10 @@ public class LoadMachine {
             rows = Integer.valueOf(obj.get("rows").toString());
 
             arr = (JSONArray)jO.get("items");
-           
-            iV = initArr();
             
+            iV = initArr();
+            System.out.println(iV.toString() + "here");
+
             
 
         } catch (ParseException e) {
@@ -64,7 +66,7 @@ public class LoadMachine {
             
             JSONObject o = (JSONObject)ob;
             String name = (String)o.get("name");
-           
+            //System.out.println(name);
             int amount = Integer.valueOf(o.get("amount").toString());
             
             String r = o.get("price").toString();
@@ -72,7 +74,10 @@ public class LoadMachine {
             double price = Double.valueOf(x);
             
             Snack sn = new Snack(name, amount, price);
+            //System.out.println(sn.checkName());
             iV.add(sn, i, j);
+            
+            
             
             
             if(j == cols - 1 && i == rows - 1){
@@ -91,6 +96,7 @@ public class LoadMachine {
                 i++;
             }
         }
+        
         return iV;
     }
 
@@ -103,16 +109,36 @@ public class LoadMachine {
     }
 
     
-    public void printInventory(){
+    public void printAll(){
         for(int col = 0; col < cols; col++){
             for(int row = 0; row < rows; row++){
-                iV.peek(row, col);
+                if(iV.peek(row, col) == null){
+                    break;
+                }
+                System.out.print("Item: " + iV.peek(row, col).checkName() + ",");
+                System.out.print(" Number left: " + iV.peek(row, col).checkAmount() + ",");
+                System.out.print(" Price: " + iV.peek(row, col).checkPrice() + "; ");
             }
+            System.out.println();
         }
     }
+
+    public void printNames(){
+        for(int col = 0; col < cols; col++){
+            for(int row = 0; row < rows; row++){
+                if(iV.peek(row, col) == null){
+                    break;
+                }
+                System.out.print(iV.peek(row, col).checkName() + ", ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args){
-        LoadMachine lm = new LoadMachine();
-        lm.readInJson("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
+        LoadMachine lm = new LoadMachine("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
+        //lm.readInJson("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
+        
         System.out.println(lm.cols);
         System.out.println(lm.rows);
         
