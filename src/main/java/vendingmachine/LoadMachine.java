@@ -21,6 +21,11 @@ public class LoadMachine {
     Inventory iV;
 
     public LoadMachine(){
+        readInJson("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
+    }
+
+    public LoadMachine(String fileName){
+        readInJson(fileName);
     }
 
     public void readInJson(String fileName){
@@ -77,12 +82,12 @@ public class LoadMachine {
             }
             
             if(i == rows - 1){
-                System.out.print(iV.peek(i, j).checkName());
+                //System.out.print(iV.peek(i, j).checkName());
                 j++;
                 i = 0;
-                System.out.println();
+                //System.out.println();
             }else{
-                System.out.print(iV.peek(i, j).checkName() + ", ");
+                //System.out.print(iV.peek(i, j).checkName() + ", ");
                 i++;
             }
         }
@@ -97,6 +102,14 @@ public class LoadMachine {
         return cols;
     }
 
+    
+    public void printInventory(){
+        for(int col = 0; col < cols; col++){
+            for(int row = 0; row < rows; row++){
+                iV.peek(row, col);
+            }
+        }
+    }
     public static void main(String[] args){
         LoadMachine lm = new LoadMachine();
         lm.readInJson("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
