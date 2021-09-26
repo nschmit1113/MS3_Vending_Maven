@@ -15,7 +15,7 @@ public class cmdui {
         int sel = 0;
         LoadMachine lm = new LoadMachine();
         String end = "";
-        while(end != "q" || end != "Q"){
+        while(end != "q" && end != "Q"){
             System.out.println("Welcome to the MS3 Vending Machine.");
             System.out.println("Please Make a Selection from the following menu");
             System.out.println("Our current snacks are:");
@@ -26,7 +26,7 @@ public class cmdui {
                 case 1:
                     //Make a selection from the snack menu
             }
-            
+            end = "q";
         }
     }
 
