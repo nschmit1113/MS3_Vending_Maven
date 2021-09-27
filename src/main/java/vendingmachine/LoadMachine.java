@@ -2,6 +2,8 @@ package vendingmachine;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
@@ -160,11 +162,12 @@ public class LoadMachine {
         System.out.println("Only json files will work.");
         Scanner scan = new Scanner(System.in);
         String filename = scan.nextLine();
-        URL url = getClass().getResource(filename);
+        Path path = Paths.get(filename);
         //File file = new File(url.getPath());
-        String file = new String(url.getPath());
-        scan.close();
-        return file;
+        Path file = path.toAbsolutePath();
+        System.out.println(file.toString());
+        
+        return file.toString();
     }
 
     public static void main(String[] args){
