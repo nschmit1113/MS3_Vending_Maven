@@ -1,6 +1,10 @@
 package vendingmachine;
 
+import java.io.File;
+import java.net.URL;
 import java.util.*;
+
+
 public class cmdui {
     /*
     * @author Nikolaus Schmitt
@@ -46,8 +50,6 @@ public class cmdui {
                     break;
                 case 2:
                     System.out.println("Please enter your credit now: ");
-                    //scan.close();
-                    //scan = new Scanner(System.in);
                     String num = scan.nextLine();
                     try{
                         double db = Double.parseDouble(num);
@@ -66,7 +68,8 @@ public class cmdui {
                     select.getUserIn();
                     break;
                 case 5:
-                    
+                    String newFile = lm.readInNewFile();
+                    lm = new LoadMachine(newFile);
                     break;
                 case 6: 
                     end = "q";

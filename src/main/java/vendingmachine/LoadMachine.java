@@ -1,6 +1,7 @@
 package vendingmachine;
 
 import java.io.*;
+import java.net.URL;
 import java.util.*;
 import org.json.simple.*;
 import org.json.simple.parser.*;
@@ -152,6 +153,18 @@ public class LoadMachine {
                 break;
             }
         }
+    }
+
+    public String readInNewFile(){
+        System.out.println("Please enter the name of the file (e.g. yourfile.json");
+        System.out.println("Only json files will work.");
+        Scanner scan = new Scanner(System.in);
+        String filename = scan.nextLine();
+        URL url = getClass().getResource(filename);
+        //File file = new File(url.getPath());
+        String file = new String(url.getPath());
+        scan.close();
+        return file;
     }
 
     public static void main(String[] args){
