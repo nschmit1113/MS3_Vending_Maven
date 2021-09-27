@@ -1,6 +1,7 @@
 package vendingmachine;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 /*
 *@author Nikolaus Schmitt
 *This class will deal with selecting the correct snack based off of the input from the 
@@ -35,7 +36,7 @@ public class SelectSnacks {
     }
 
     public void getUserIn(){
-        Scanner scan = new Scanner(System.in);
+       
         while(flag){
             try{
                 str = scan.nextLine();
@@ -53,10 +54,10 @@ public class SelectSnacks {
                 lm.getIV().peek(index, sec);
                 makeSelection();
                 flag = false;
-                scan.close();
+                
             }catch(Exception e){
                 System.out.println("Please enter a valid input (e.g. a1)");
-                scan.close();
+                
             }
              
         }
@@ -77,7 +78,7 @@ public class SelectSnacks {
             System.out.println("Please add credit to make this purchase.");
             System.out.println("Enter 1 to add credit");
             System.out.println("Enter 2 to cancel the transaction");
-            while(us < 1 && us > 2){
+            while(us < 1 || us > 2){
                 try{
                    us = scan.nextInt(); 
                 }catch(Exception e){
@@ -88,6 +89,7 @@ public class SelectSnacks {
             }
             switch(us){
                 case 1:
+                    scan = new Scanner(System.in);
                     System.out.println("Please enter your credit now: ");
                     String num = scan.nextLine();
                     try{
@@ -109,9 +111,9 @@ public class SelectSnacks {
 
     public void vend(){
         System.out.println("Vending in progress...");
-        long waiter = 10;
+        
         try{
-            wait(waiter); 
+            TimeUnit.SECONDS.sleep(5);
         }catch(Exception e){
             System.out.println(e);
         }
@@ -119,6 +121,7 @@ public class SelectSnacks {
         cr.subtractCredit(lm.getIV().peek(index, sec).checkPrice());
         System.out.println("Your available balance is: " + cr.getCredit().toString());
         lm.getIV().peek(index, sec).decAmount();
+        
     }
 
     public static void main(String[] args){

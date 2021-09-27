@@ -124,7 +124,7 @@ public class LoadMachine {
                     break;
 
                 }
-                System.out.print("{ " + chars[row] + "" + inte[col] + ": ");
+                System.out.print("{ " + chars[col] + "" + inte[row] + ": ");
                 System.out.print("Item: " + iV.peek(row, col).checkName() + ",");
                 System.out.print(" Number left: " + iV.peek(row, col).checkAmount() + ",");
                 System.out.print(" Price: " + iV.peek(row, col).checkPrice() + "}  ");
@@ -144,7 +144,7 @@ public class LoadMachine {
                     breaker = true;
                     break;
                 }
-                System.out.print("{ " + chars[row] + "" + inte[col] + ": ");
+                System.out.print("{ " + chars[col] + "" + inte[row] + ": ");
                 System.out.print(iV.peek(row, col).checkName() + "}  ");
             }
             System.out.println();

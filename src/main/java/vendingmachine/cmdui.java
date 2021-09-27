@@ -13,6 +13,7 @@ public class cmdui {
         LoadMachine lm = new LoadMachine();
         Credit cr = new Credit();
         SelectSnacks select = new SelectSnacks(lm, cr);
+        Scanner scan;
         String end = "";
         System.out.println("Welcome to the MS3 Vending Machine.");
         System.out.println("Please Make a Selection from the following menu");
@@ -29,7 +30,8 @@ public class cmdui {
             System.out.println("4: Select a snack to purchase");
             System.out.println("5: Load the machine with new inventory");
             System.out.println("6: Leave the machine");
-            Scanner scan = new Scanner(System.in);
+            
+            scan = new Scanner(System.in);
             end = scan.nextLine();
             try{
                 sel = Integer.parseInt(end);
@@ -44,6 +46,8 @@ public class cmdui {
                     break;
                 case 2:
                     System.out.println("Please enter your credit now: ");
+                    //scan.close();
+                    //scan = new Scanner(System.in);
                     String num = scan.nextLine();
                     try{
                         double db = Double.parseDouble(num);
@@ -62,7 +66,7 @@ public class cmdui {
                     select.getUserIn();
                     break;
                 case 5:
-
+                    
                     break;
                 case 6: 
                     end = "q";
