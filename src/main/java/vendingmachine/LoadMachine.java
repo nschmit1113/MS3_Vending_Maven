@@ -110,28 +110,39 @@ public class LoadMachine {
 
     
     public void printAll(){
+        boolean breaker = false;
         for(int col = 0; col < cols; col++){
             for(int row = 0; row < rows; row++){
                 if(iV.peek(row, col) == null){
+                    breaker = true;
                     break;
+
                 }
                 System.out.print("Item: " + iV.peek(row, col).checkName() + ",");
                 System.out.print(" Number left: " + iV.peek(row, col).checkAmount() + ",");
                 System.out.print(" Price: " + iV.peek(row, col).checkPrice() + "; ");
             }
             System.out.println();
+            if(breaker){
+                break;
+            }
         }
     }
 
     public void printNames(){
+        boolean breaker = false;
         for(int col = 0; col < cols; col++){
             for(int row = 0; row < rows; row++){
                 if(iV.peek(row, col) == null){
+                    breaker = true;
                     break;
                 }
                 System.out.print(iV.peek(row, col).checkName() + ", ");
             }
             System.out.println();
+            if(breaker){
+                break;
+            }
         }
     }
 

@@ -14,14 +14,15 @@ public class cmdui {
         Credit cr = new Credit();
         SelectSnacks select = new SelectSnacks();
         String end = "";
+        System.out.println("Welcome to the MS3 Vending Machine.");
+        System.out.println("Please Make a Selection from the following menu");
+        System.out.println("Our current snacks are:");
+        System.out.println("***************************************************************");
+        lm.printNames();
+        System.out.println("***************************************************************\n");
+        System.out.println("Please Make a Selection from the following menu");
         while(end != "q" && end != "Q"){
-            System.out.println("Welcome to the MS3 Vending Machine.");
-            System.out.println("Please Make a Selection from the following menu");
-            System.out.println("Our current snacks are:");
-            System.out.println("***************************************************************");
-            lm.printNames();
-            System.out.println("***************************************************************\n");
-            System.out.println("Please Make a Selection from the following menu");
+            
             System.out.println("1: View snacks, prices, and amounts of each left");
             System.out.println("2: Insert credit into machine");
             System.out.println("3: View available credit");
@@ -29,7 +30,14 @@ public class cmdui {
             System.out.println("5: Load the machine with new inventory");
             System.out.println("6: Leave the machine");
             Scanner scan = new Scanner(System.in);
-            sel = scan.nextInt();
+            end = scan.nextLine();
+            try{
+                sel = Integer.parseInt(end);
+            }catch(Exception e){
+                System.out.println("Please enter a number between 1 and 6 inclusive.");
+            }
+            
+
             switch(sel){
                 case 1:
                     lm.printAll();
@@ -37,21 +45,29 @@ public class cmdui {
                 case 2:
                     System.out.println("Please enter your credit now: ");
                     String num = scan.nextLine();
-                    double db = Double.parseDouble(num);
-                    cr.addCredit(db);
-                    System.out.print("Your credit is now: " + cr.getCredit());
+                    try{
+                        double db = Double.parseDouble(num);
+                        cr.addCredit(db);
+                        System.out.println("Your credit is now: " + cr.getCredit());
+                    }catch(Exception e){
+                        System.out.println("Please enter a valid decimal value. (e.g. 0.00)");
+                    }
                     break;
                 case 3:
-                    System.out.print("Your credit is: " + cr.getCredit());
+                    System.out.println("Your credit is: " + cr.getCredit());
                     break;
                 case 4:
                     
+                    break;
                 case 5:
 
+                    break;
                 case 6: 
-                end = "q";
-                scan.close();
-                System.out.println("Thanks for shopping with us. Have a nice day!");
+                    end = "q";
+                    scan.close();
+                    System.out.println("Thanks for shopping with us. Have a nice day!");
+                default:
+                    
             }
             
         }
