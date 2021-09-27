@@ -19,6 +19,8 @@ public class LoadMachine {
     private int cols;
     JSONArray arr;
     Inventory iV;
+    private char[] chars = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    private int[] inte = {0,1,2,3,4,5,6,7,8,9,}; 
 
     public LoadMachine(){
         System.out.println("Here1");
@@ -108,6 +110,10 @@ public class LoadMachine {
         return cols;
     }
 
+    public Inventory getIV(){
+        return this.iV;
+    }
+
     
     public void printAll(){
         boolean breaker = false;
@@ -118,9 +124,10 @@ public class LoadMachine {
                     break;
 
                 }
+                System.out.print("{ " + chars[row] + "" + inte[col] + ": ");
                 System.out.print("Item: " + iV.peek(row, col).checkName() + ",");
                 System.out.print(" Number left: " + iV.peek(row, col).checkAmount() + ",");
-                System.out.print(" Price: " + iV.peek(row, col).checkPrice() + "; ");
+                System.out.print(" Price: " + iV.peek(row, col).checkPrice() + "}  ");
             }
             System.out.println();
             if(breaker){
@@ -137,7 +144,8 @@ public class LoadMachine {
                     breaker = true;
                     break;
                 }
-                System.out.print(iV.peek(row, col).checkName() + ", ");
+                System.out.print("{ " + chars[row] + "" + inte[col] + ": ");
+                System.out.print(iV.peek(row, col).checkName() + "}  ");
             }
             System.out.println();
             if(breaker){

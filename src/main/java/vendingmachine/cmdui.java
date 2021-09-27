@@ -12,7 +12,7 @@ public class cmdui {
         int sel = 0;
         LoadMachine lm = new LoadMachine();
         Credit cr = new Credit();
-        SelectSnacks select = new SelectSnacks();
+        SelectSnacks select = new SelectSnacks(lm, cr);
         String end = "";
         System.out.println("Welcome to the MS3 Vending Machine.");
         System.out.println("Please Make a Selection from the following menu");
@@ -57,7 +57,9 @@ public class cmdui {
                     System.out.println("Your credit is: " + cr.getCredit());
                     break;
                 case 4:
-                    
+                    System.out.println("Please make your selection");
+                    lm.printNames();
+                    select.getUserIn();
                     break;
                 case 5:
 
