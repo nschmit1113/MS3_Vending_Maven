@@ -47,9 +47,8 @@ It is also possible that the .json file will need to have its path set or have a
 * Step 2: Run the following commands: 
 * Step 3: '''mvn clean install'''
 * Step 4: '''mvn dependency:copy-dependencies'''
-* Step 5: '''cd target'''
-* step 6: '''java -cp "vending-1.0.jar:dependency/*" vendingmachine.cmdui'''  (For mac/linux)
-* Step 6: '''java -cp "vending-1.0.jar;dependency/*" vendingmachine.cmdui''' (For Windows)
+* step 5: '''java -cp "target/vending-1.0.jar:target/dependency/*" vendingmachine.cmdui'''  (For mac/linux)
+* Step 5: '''java -cp "target\vending-1.0.jar;target\dependency\*" vendingmachine.cmdui''' (For Windows)
 
 # Alternate Run Method
 Use VSCode to run the program as a maven project.
