@@ -7,7 +7,7 @@ public class cmdui {
     /*
     * @author Nikolaus Schmitt
     * This class will deal with user interactions through the command line.
-    * 
+    * This class is where the main method for the entire program resides.
     */
 
     public static void main(String[] args){
@@ -37,7 +37,7 @@ public class cmdui {
             System.out.println("5: Load the machine with new inventory");
             System.out.println("6: Leave the machine");
             
-            
+            //The try catch block helps protect against erronious inputs
             end = scan.nextLine();
             try{
                 sel = Integer.parseInt(end);
@@ -45,7 +45,7 @@ public class cmdui {
                 System.out.println("Please enter a number between 1 and 6 inclusive.");
             }
             
-
+            //The switch statement controls the user choice based off of their input
             switch(sel){
                 case 1:
                     lm.printAll();
@@ -68,6 +68,7 @@ public class cmdui {
                     System.out.println("Please make your selection");
                     lm.printNames();
                     select.getUserIn();
+                    sel = 0;
                     break;
                 case 5:
                     String newFile = lm.readInNewFile();
@@ -79,13 +80,8 @@ public class cmdui {
                     scan.close();
                     System.out.println("Thanks for shopping with us. Have a nice day!");
                 default:
-                    
+                    break;
             }
-            
         }
-        
     }
-
-    
-
 }

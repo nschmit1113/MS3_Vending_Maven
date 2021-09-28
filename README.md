@@ -32,7 +32,11 @@ a consumer enters a selection, it should report what was selected.
 ## Solution
 
 In my solution I decided to approach this problem by breaking the components of the assignment up into smaller 
-chunks and then solving the small parts first. For example, the Credit and Inventory classes are mostly barebones with only limited types of functions. 
+chunks and then solving the small parts first. I then wrote down what I thought would be some required methods for the classes to solve each of the smaller parts. I also considered factors such as mutable vs immutable classes and how that would affect my solution, as well as other factors such as implementing a UI vs commandline project. In the end, both mutable and commandline were chosen in the interest of time and coding efficiency. 
+
+The Credit, Snack, and Inventory classes are mostly barebones with only limited types of functions. The cmdui class is the launch point of the project and serves to create the main run loop for the project. The main work of the function happens in the LoadMachine and SelectSnack classes. These classes pull from the three underlying methods to function. To keep the readability better, I tried to seperate each piece into indiviual methods whenever possible. 
+
+A second .json file was used for testing purposes. Also, I did user testing and implemented some JUnit tests. The next steps for this project would be to expand the testing reach and create a full testing suite as well as implement a GUI using React.js or a similar framework. 
 
 ## How To Run
 
@@ -46,6 +50,7 @@ It is also possible that the .json file will need to have its path set or have a
 * Step 5: '''cd target'''
 * step 6: '''java -cp "vending-1.0.jar:dependency/*" vendingmachine.cmdui'''
 
-
+# Alternate Run Method
+Use VSCode to run the program as a maven project.
 
 The program should now be running, enjoy!

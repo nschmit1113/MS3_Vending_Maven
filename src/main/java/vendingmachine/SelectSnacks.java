@@ -24,13 +24,14 @@ public class SelectSnacks {
     Scanner scan2;
 
 
-
+    //Constructor for the class
     public SelectSnacks(LoadMachine lm1, Credit cr, Scanner scan){
         this.cr = cr;
         this.lm = lm1;
         this.scan2  = scan;
     }
 
+    //Gets the snack selection and parses it to retrive the correct index for the array.
     public void getUserIn(){
        flag = true;
         while(flag){
@@ -61,6 +62,7 @@ public class SelectSnacks {
         
     }
 
+    //This method makes sure that that the inventory is available and sufficient funds are present.
     public void makeSelection(){
         
         if(0 == lm.getIV().peek(sec, index).checkAmount()){
@@ -109,12 +111,14 @@ public class SelectSnacks {
                     break;
                 case 2:
                 System.out.println("Cancelling your transaction");
-                    return;
+                    break;
 
             }
+            return;
         }
     }
 
+    //Decrements the correct counts and subtracts funds.
     public void vend(){
         System.out.println("Vending in progress...");
         
