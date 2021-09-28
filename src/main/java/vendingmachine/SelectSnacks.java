@@ -9,37 +9,33 @@ import java.util.concurrent.TimeUnit;
 *class to work.
 */
 public class SelectSnacks {
-    private int rows;
-    private int cols;
+    
     private int sec;
     private int index = 0;
-    private double db;
+    
     private char[] chars = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-    //private int[] inte = {0,1,2,3,4,5,6,7,8,9,}; 
+    
     private String str;
     private String[] first;
     private String second;
     private boolean flag = true;
     LoadMachine lm;
     Credit cr;
-    Scanner scan;
+    Scanner scan2;
 
 
 
-    public SelectSnacks(LoadMachine lm, Credit cr){
+    public SelectSnacks(LoadMachine lm1, Credit cr, Scanner scan){
         this.cr = cr;
-        this.lm = lm;
-        this.db = cr.getCredit();
-        this.rows = lm.rows();
-        this.cols = lm.cols();
-        this.scan  = new Scanner(System.in);
+        this.lm = lm1;
+        this.scan2  = scan;
     }
 
     public void getUserIn(){
-       
+       flag = true;
         while(flag){
             try{
-                str = scan.nextLine();
+                str = scan2.nextLine();
                 first = str.split("");
                 second = first[0];
                 sec = Integer.parseInt(first[1]);
@@ -51,9 +47,10 @@ public class SelectSnacks {
                         break;
                     }
                 }
-                lm.getIV().peek(index, sec);
+                
                 makeSelection();
                 flag = false;
+                str = new String();
                 
             }catch(Exception e){
                 System.out.println("Please enter a valid input (e.g. a1)");
@@ -66,7 +63,7 @@ public class SelectSnacks {
 
     public void makeSelection(){
         
-        if(lm.getIV().peek(index, sec).checkAmount() <= 0){
+        if(0 == lm.getIV().peek(sec, index).checkAmount()){
             System.out.println("Item out of stock.");
             return;
         }
@@ -80,7 +77,7 @@ public class SelectSnacks {
             System.out.println("Enter 2 to cancel the transaction");
             while(us < 1 || us > 2){
                 try{
-                   us = scan.nextInt(); 
+                   us = scan2.nextInt(); 
                 }catch(Exception e){
                     System.out.println("Please enter either 1 or 2 then press enter.");
                     System.out.println("Enter 1 to add credit");
@@ -89,16 +86,25 @@ public class SelectSnacks {
             }
             switch(us){
                 case 1:
-                    scan = new Scanner(System.in);
-                    System.out.println("Please enter your credit now: ");
-                    String num = scan.nextLine();
-                    try{
-                        double db = Double.parseDouble(num);
-                        cr.addCredit(db);
-                        System.out.println("Your credit is now: " + cr.getCredit());
-                    }catch(Exception e){
-                        System.out.println("Please enter a valid decimal value. (e.g. 0.00)");
-                    }   
+                    
+                    while(cr.getCredit() < lm.getIV().peek(index, sec).checkPrice()){
+                        
+                        System.out.println("Please add credit now: ");
+                        String num = scan2.nextLine();
+                        try{
+                            double db = Double.parseDouble(num);
+                            cr.addCredit(db);
+                            System.out.println("Your credit is now: " + cr.getCredit());
+                            if(cr.getCredit() < lm.getIV().peek(index, sec).checkPrice()){
+                                System.out.print("Please add: $");
+                                System.out.println(lm.getIV().peek(index, sec).checkPrice() - cr.getCredit() 
+                                            + " additional dollars");
+                            }
+                        }catch(Exception e){
+                            System.out.println("Please enter a valid decimal value. (e.g. 0.00)");
+                        }   
+                    }
+                    
                     vend();
                     break;
                 case 2:
@@ -117,15 +123,16 @@ public class SelectSnacks {
         }catch(Exception e){
             System.out.println(e);
         }
-        System.out.println("Please take you item: " + lm.getIV().peek(index, sec).checkName());
-        cr.subtractCredit(lm.getIV().peek(index, sec).checkPrice());
-        System.out.println("Your available balance is: " + cr.getCredit().toString());
-        lm.getIV().peek(index, sec).decAmount();
+        System.out.println("Please take you item: " + lm.getIV().peek(sec, index).checkName());
+        cr.subtractCredit(lm.getIV().peek(sec, index).checkPrice());
+        System.out.println("Your available balance is: " + cr.getCredit().toString() + "\n\n");
+        System.out.println(lm.getIV().peek(sec, index).checkAmount());
+        lm.getIV().peek(sec, index).decAmount();
+        
+        
         
     }
 
-    public static void main(String[] args){
-        
-    }
+    
 
 }

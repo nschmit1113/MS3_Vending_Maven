@@ -1,12 +1,11 @@
 package vendingmachine;
 
 import java.io.*;
-import java.net.URL;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import org.json.simple.*;
-import org.json.simple.parser.*;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -22,35 +21,38 @@ public class LoadMachine {
     private int cols;
     JSONArray arr;
     Inventory iV;
+    Scanner scan;
     private char[] chars = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     private int[] inte = {0,1,2,3,4,5,6,7,8,9,}; 
 
-    public LoadMachine(){
-        System.out.println("Here1");
-        readInJson("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
+    public LoadMachine(Scanner scan){
+        this.scan = scan;
+        Path path = Paths.get("input.json");
+        Path file = path.toAbsolutePath();
+        readInJson(file.toString());
     }
 
-    public LoadMachine(String fileName){
+    public LoadMachine(String fileName, Scanner scan){
+        this.scan = scan;
         readInJson(fileName);
     }
 
     public void readInJson(String fileName){
         JSONParser jP = new JSONParser();
         try {
-            System.out.println(fileName);
+            
             JSONObject jO =(JSONObject) jP.parse(new FileReader(fileName));
-            //String id = (String) jsonObject.get("ID"); example
+            
             JSONObject obj = (JSONObject)jO.get("config");
             
             cols = Integer.valueOf((String)obj.get("columns"));
             rows = Integer.valueOf(obj.get("rows").toString());
+            System.out.println(cols + " cols");
+            System.out.println(rows + " rows");
 
             arr = (JSONArray)jO.get("items");
-            
+            iV = new Inventory(rows, cols);
             iV = initArr();
-            System.out.println(iV.toString() + "here");
-
-            
 
         } catch (ParseException e) {
             System.out.println(e);
@@ -160,22 +162,14 @@ public class LoadMachine {
     public String readInNewFile(){
         System.out.println("Please enter the name of the file (e.g. yourfile.json");
         System.out.println("Only json files will work.");
-        Scanner scan = new Scanner(System.in);
+        
         String filename = scan.nextLine();
         Path path = Paths.get(filename);
-        //File file = new File(url.getPath());
         Path file = path.toAbsolutePath();
-        System.out.println(file.toString());
+        
         
         return file.toString();
     }
 
-    public static void main(String[] args){
-        LoadMachine lm = new LoadMachine("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
-        //lm.readInJson("/Users/nikolaus/coding_questions/MS3_Vending_Maven/input.json");
-        
-        System.out.println(lm.cols);
-        System.out.println(lm.rows);
-        
-    }
+    
 }

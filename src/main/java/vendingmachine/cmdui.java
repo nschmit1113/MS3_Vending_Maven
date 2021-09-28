@@ -1,7 +1,5 @@
 package vendingmachine;
 
-import java.io.File;
-import java.net.URL;
 import java.util.*;
 
 
@@ -14,11 +12,15 @@ public class cmdui {
 
     public static void main(String[] args){
         int sel = 0;
-        LoadMachine lm = new LoadMachine();
+        Scanner scan = new Scanner(System.in);
+        LoadMachine lm = new LoadMachine(scan);
         Credit cr = new Credit();
-        SelectSnacks select = new SelectSnacks(lm, cr);
-        Scanner scan;
+        SelectSnacks select = new SelectSnacks(lm, cr, scan);
+        
         String end = "";
+        System.out.println();
+        System.out.println();
+        System.out.println();
         System.out.println("Welcome to the MS3 Vending Machine.");
         System.out.println("Please Make a Selection from the following menu");
         System.out.println("Our current snacks are:");
@@ -35,7 +37,7 @@ public class cmdui {
             System.out.println("5: Load the machine with new inventory");
             System.out.println("6: Leave the machine");
             
-            scan = new Scanner(System.in);
+            
             end = scan.nextLine();
             try{
                 sel = Integer.parseInt(end);
@@ -69,7 +71,8 @@ public class cmdui {
                     break;
                 case 5:
                     String newFile = lm.readInNewFile();
-                    lm = new LoadMachine(newFile);
+                    lm = new LoadMachine(newFile, scan);
+                    select = new SelectSnacks(lm, cr, scan);
                     break;
                 case 6: 
                     end = "q";

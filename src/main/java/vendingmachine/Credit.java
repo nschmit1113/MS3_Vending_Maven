@@ -1,5 +1,5 @@
 package vendingmachine;
-
+import org.apache.commons.math3.util.Precision;
 /*
 *@author Nikolaus Schmitt
 *This class deals with displaying the machines available credit, adding to
@@ -7,12 +7,10 @@ package vendingmachine;
 *The credit can never go below 0.0. 
 */
 
-import org.apache.commons.math3.util.Precision;
-
-
 public class Credit {
     
     private double credit = 0.00;
+
     public Credit(){
 
     }

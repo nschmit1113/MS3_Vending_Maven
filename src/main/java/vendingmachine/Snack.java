@@ -18,7 +18,7 @@ public class Snack {
     }
 
     public void decAmount(){
-        if(this.amount <= 0){
+        if(this.amount < 0){
             throw new IllegalStateException("Amount is invalid");
         }
         this.amount--;

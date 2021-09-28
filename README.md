@@ -31,4 +31,21 @@ a consumer enters a selection, it should report what was selected.
 
 ## Solution
 
+In my solution I decided to approach this problem by breaking the components of the assignment up into smaller 
+chunks and then solving the small parts first. For example, the Credit and Inventory classes are mostly barebones with only limited types of functions. 
 
+## How To Run
+
+To run using the command line, you will need to have maven installed on your machine.
+It is also possible that the .json file will need to have its path set or have a new file loaded.
+
+* Step 1: Navigate to the cloned directory, it should have the src and pom.xml files in it.
+* Step 2: Run the following commands: 
+* Step 3: '''mvn clean install'''
+* Step 4: '''mvn dependency:copy-dependencies'''
+* Step 5: '''cd target'''
+* step 6: '''java -cp "vending-1.0.jar:dependency/*" vendingmachine.cmdui'''
+
+
+
+The program should now be running, enjoy!
