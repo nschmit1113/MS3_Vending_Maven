@@ -1,2 +1,4 @@
-vendingmachine/CreditTest.class
-vendingmachine/LoadMachineTest.class
+vendingmachine\CreditTest.class
+vendingmachine\LoadMachineTest.class
+vendingmachine\SnackTest.class
+vendingmachine\InventoryTest.class

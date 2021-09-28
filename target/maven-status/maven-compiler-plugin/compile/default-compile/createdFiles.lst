@@ -1,6 +1,6 @@
-vendingmachine/cmdui.class
-vendingmachine/Snack.class
-vendingmachine/LoadMachine.class
-vendingmachine/Inventory.class
-vendingmachine/Credit.class
-vendingmachine/SelectSnacks.class
+vendingmachine\Credit.class
+vendingmachine\Inventory.class
+vendingmachine\Snack.class
+vendingmachine\LoadMachine.class
+vendingmachine\cmdui.class
+vendingmachine\SelectSnacks.class
